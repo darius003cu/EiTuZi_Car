@@ -1,0 +1,18 @@
+/* Test code for led blinking */
+
+module BlinkyTest(
+
+input		Clk,
+output reg 	Led
+
+);
+
+	reg State = 0;
+	
+	always @(posedge Clk) begin
+		State <= State ^ 1;
+		assign Led = State;
+	end
+	
+	
+endmodule
