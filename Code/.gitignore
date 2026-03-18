@@ -12,3 +12,8 @@ simulation/
 *.pin
 *.done
 *.qws
+
+# Verilog specific files
+
+*.bak
+*.cdf
