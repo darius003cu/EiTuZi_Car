@@ -6,11 +6,9 @@ input		Clk,
 output reg 	Led
 
 );
-
-	reg State = 0;
 	
-	always @(posedge Clk) begin
-		Led <= ~Led;
+	initial begin
+		Led = 1;
 	end
 	
 	
