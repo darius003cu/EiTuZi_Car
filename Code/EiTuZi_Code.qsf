@@ -59,4 +59,8 @@ set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
 set_global_assignment -name VECTOR_WAVEFORM_FILE BlinkyTest.vwf
 set_global_assignment -name SIMULATION_MODE FUNCTIONAL
 set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE BlinkyTest.vwf
+set_global_assignment -name MISC_FILE "C:/Users/Darius-PC/Documents/GitHub/EiTuZi_Car/Code/EiTuZi_Code.dpf"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_9 -to Led
+set_location_assignment PIN_17 -to Clk
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
