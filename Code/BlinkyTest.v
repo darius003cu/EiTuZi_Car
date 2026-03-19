@@ -8,7 +8,7 @@ output reg 	Led
 );
 	
 	initial begin
-		Led = 1l
+		Led = 1;
 	end
 	
 	
