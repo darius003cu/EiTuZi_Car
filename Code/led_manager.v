@@ -14,21 +14,24 @@ module led_manager (
     always @(*) begin
         leduri = {10{faza_scurta}};
 
-        // GRUP STANGA (LED-urile 9, 8, 7)
+        // GRUP STANGA (LED-urile 9, 8,7, 4, 3,2 )
         if (senzori[4] || senzori[3]) begin
             leduri[9:7] = 3'b111; 
+            leduri[4:2] = 3'b111; 
+
         end
         
-        // GRUP FATA (LED-urile 6, 5, 4, 3)
+        // GRUP FATA (LED-urile 8, 7, 6, 3, 2, 1 )
         if (senzori[2]) begin
-            leduri[6:3] = 4'b1111;
+            leduri[8:6] = 3'b111;
+            leduri[3:1] = 3'b111;
         end
         
-        // GRUP DREAPTA (LED-urile 2, 1, 0)
+        // GRUP DREAPTA (LED-urile 7, 6, 5, 2, 1, 0)
         if (senzori[1] || senzori[0]) begin
+            leduri[7:5] = 3'b111;
             leduri[2:0] = 3'b111;
         end
     end
 
 endmodule
-);
