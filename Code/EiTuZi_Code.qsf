@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C5T144C8
-set_global_assignment -name TOP_LEVEL_ENTITY WindingRoad
+set_global_assignment -name TOP_LEVEL_ENTITY traseuVirajat
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:09:06  MARCH 18, 2026"
 set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
@@ -53,7 +53,7 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name VERILOG_FILE BlinkyTest.v
 set_global_assignment -name VECTOR_WAVEFORM_FILE BlinkyTest.vwf
-set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name SIMULATION_MODE TIMING
 set_global_assignment -name MISC_FILE "C:/Users/Darius-PC/Documents/GitHub/EiTuZi_Car/Code/EiTuZi_Code.dpf"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
@@ -62,26 +62,34 @@ set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPCS4
 set_global_assignment -name VERILOG_FILE Motor_Driver.v
 set_global_assignment -name VERILOG_FILE EiTuZi_Car.v
 set_global_assignment -name VERILOG_FILE Headlights.v
-set_location_assignment PIN_41 -to IN2a
-set_location_assignment PIN_42 -to IN3a
-set_location_assignment PIN_43 -to IN4a
-set_location_assignment PIN_53 -to IN1b
-set_location_assignment PIN_55 -to IN2b
-set_location_assignment PIN_57 -to IN3b
-set_location_assignment PIN_58 -to IN4b
 set_global_assignment -name VERILOG_FILE Sensor_Test.v
-set_location_assignment PIN_40 -to IN1a
-set_location_assignment PIN_135 -to HL[0]
-set_location_assignment PIN_134 -to HL[1]
-set_location_assignment PIN_136 -to HL[2]
 set_global_assignment -name VERILOG_FILE PWM_test.v
 set_global_assignment -name VECTOR_WAVEFORM_FILE PWM_test.vwf
-set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE PWM_test.vwf
 set_location_assignment PIN_17 -to Clk
-set_location_assignment PIN_133 -to PWM
 set_global_assignment -name VERILOG_FILE Sensors.v
 set_global_assignment -name VERILOG_FILE Motors_Speed.v
-set_global_assignment -name VERILOG_FILE WindingRoad.v
+set_location_assignment PIN_53 -to IN1A
+set_location_assignment PIN_55 -to IN2A
+set_location_assignment PIN_57 -to IN3A
+set_location_assignment PIN_58 -to IN4A
+set_location_assignment PIN_40 -to IN1B
+set_location_assignment PIN_41 -to IN2B
+set_location_assignment PIN_42 -to IN3B
+set_location_assignment PIN_43 -to IN4B
+set_global_assignment -name VERILOG_FILE Traseu_Virajat.v
+set_location_assignment PIN_44 -to EN1A
+set_location_assignment PIN_45 -to EN1B
+set_location_assignment PIN_59 -to EN2A
+set_location_assignment PIN_60 -to EN2B
+set_location_assignment PIN_143 -to Sensors[2]
+set_location_assignment PIN_142 -to Sensors[4]
+set_location_assignment PIN_141 -to Sensors[1]
+set_location_assignment PIN_139 -to Sensors[3]
+set_location_assignment PIN_137 -to Sensors[0]
+set_global_assignment -name VERILOG_FILE traseuVirajat.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE traseuVirajat.vwf
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE traseuVirajat.vwf
+set_global_assignment -name VERILOG_FILE PIDcontroller.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
