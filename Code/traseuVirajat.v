@@ -151,7 +151,7 @@ module traseuVirajat(Sensors, Clk, EN1A, EN2A, EN1B, EN2B, IN1A, IN2A, IN3A, IN4
     output wire IN1A, IN2A, IN3A, IN4A, IN1B, IN2B, IN3B, IN4B;
     reg[7:0] leftSpeed, rightSpeed;
     reg signed[2:0] error, lastError;
-    wire signed[7:0] correction;
+    wire signed[8:0] correction;
 
     /* Forward movement */
     assign IN1A = 1'b0;
@@ -182,12 +182,12 @@ module traseuVirajat(Sensors, Clk, EN1A, EN2A, EN1B, EN2B, IN1A, IN2A, IN3A, IN4
     /* Error from sensors - combinational */
     always @(Sensors) begin
         case(Sensors)
-            5'b00100: error = 0;
-            5'b00110: error = -1;
-            5'b00010: error = -2;
+            5'b00100: error = 0;				//b?010?
+            5'b00110: error = -1;				//b?011?
+            5'b00010: error = -2;				//b?001?
             5'b00001: error = -3;
-            5'b01100: error = 1;
-            5'b01000: error = 2;
+            5'b01100: error = 1;				//b?110?
+            5'b01000: error = 2;				//b?100?
             5'b10000: error = 3;
             5'b10100: error = 0;
             5'b00101: error = 0;
@@ -197,30 +197,27 @@ module traseuVirajat(Sensors, Clk, EN1A, EN2A, EN1B, EN2B, IN1A, IN2A, IN3A, IN4
     end
 
     /* Speed assignment - clocked */
-    always @(posedge Clk) begin
-        case(Sensors)
-            5'b10100: begin
-                leftSpeed  <= 90 + correction;
-                rightSpeed <= 90 - correction;
-            end
-            5'b00101: begin
-                leftSpeed  <= 90 + correction;
-                rightSpeed <= 90 - correction;
-            end
-            5'b00000: begin
-                leftSpeed  <= 90;
-                rightSpeed <= 90;
-            end
-            default: begin
-                leftSpeed  <= baseSpeed + correction;
-                rightSpeed <= baseSpeed - correction;
-            end
-        endcase
-
-        if(leftSpeed < 50)  leftSpeed  <= 50;
-        if(rightSpeed < 50) rightSpeed <= 50;
-        if(leftSpeed > 200)  leftSpeed  <= 200;
-        if(rightSpeed > 200) rightSpeed <= 200;
-    end
+   always @(posedge Clk) begin
+    reg signed[8:0] leftRaw, rightRaw;
+    
+    leftRaw  = 9'sd100 + correction;
+	rightRaw = 9'sd100 - correction;
+    
+    case(Sensors)
+        5'b10100, 5'b00101: begin
+            leftSpeed  <= (leftRaw  < 50) ? 50 : (leftRaw  > 250) ? 250 : leftRaw[7:0];
+            rightSpeed <= (rightRaw < 50) ? 50 : (rightRaw > 250) ? 250 : rightRaw[7:0];
+        end
+        5'b00000: begin
+            leftSpeed  <= 80;
+            rightSpeed <= 80;
+        end
+        default: begin
+            leftSpeed  <= (leftRaw  < 50) ? 50 : (leftRaw  > 250) ? 250 : leftRaw[7:0];
+            rightSpeed <= (rightRaw < 50) ? 50 : (rightRaw > 250) ? 250 : rightRaw[7:0];
+        end
+    endcase
+end
+     
 
 endmodule
