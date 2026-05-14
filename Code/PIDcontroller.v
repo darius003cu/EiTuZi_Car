@@ -4,10 +4,12 @@ module PIDcontroller(Clk, correction, error);
 	input Clk;
 	input signed[2:0] error;
 	output reg signed[7:0] correction;
+	reg signed[15:0] rawCorrection;
+
 	
-	localparam Kp = 80;
+	localparam Kp = 100;
 	localparam Ki = 0;
-	localparam Kd = 17;
+	localparam Kd = 25;
 
 	
 	reg signed[15:0] integral;
@@ -22,7 +24,6 @@ module PIDcontroller(Clk, correction, error);
 	end
 	
 	always @(posedge Clk) begin
-		reg signed[15:0] rawCorrection;
 		integral <= integral + error;
 		rawCorrection <= (Kp * error) + (Ki * integral) + (Kd * (error - prevError));
 		prevError <= error;
